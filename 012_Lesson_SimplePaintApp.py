@@ -19,3 +19,21 @@ while True:
   if len(sqft) < 2:
     print('Invalid format')
     break
+
+  #Convert the strings to ints
+  w = int(sqft[0])
+  h = int(sqft[1])
+  item = [w,h]
+  walls.append(item)
+  print(f'Adding wall: {item}')
+
+#Calculate the numbers
+print(f'You entered {walls}')
+for m in walls:
+  w = m[0]
+  h = m[1]
+  s = w * h
+  v = s * gallons
+  total += v
+
+print(f'You need to buy {round(total, 2)} gallons of paint')
