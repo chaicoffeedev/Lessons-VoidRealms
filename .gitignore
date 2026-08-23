@@ -7,6 +7,8 @@
 
 # Windows
 Thumbs.db
+*.bat
+__pycache__/
 
 # Environments
 .env

@@ -29,6 +29,7 @@ counter()
 
 # *args - positional variable length arguments
 def multiple(*args):
+    print(f'Type Info: {args}')
     z = 1
     for num in args:
         print(f'Num = {num}')
