@@ -3,7 +3,7 @@
 Everything in python is an object
 That means functions can be used as obejcts
 So we can do some really cool things
-A decorator takes in a function, adds some additional functionality and retunrs it.
+A decorator takes in a function, adds some additional functionality and returns it.
 """
 
 #Basic Decorator
@@ -27,10 +27,10 @@ def do_stuff():
 # @makeBold is equal to
 # f = makeBold(printName)
 # f()
-def makeBold(func):
+def makeBold(fun):
   def inner():
     print('<b>')
-    func()
+    fun()
     print('</b>')
   return inner #return the inner function
 
@@ -68,7 +68,38 @@ divide(100, 0)
 divide(100, 'cat')
 
 #Decorators with unknown no. of params
-#We wwant a decorator that can pass params and handle anything
+#We want a decorator that can pass params and handle anything
 #We also want to chain them together
 # *args, **kwargs to the rescue
 
+def outline(func):
+  def inner(*args, **kwargs):
+    print('-' * 20)
+    func(*args, **kwargs)
+    print('-' * 20)
+  return inner
+
+def list_items(func):
+  def inner(*args, **kwargs):
+    func(*args, **kwargs)
+    print(f'args = {args}')
+    print(f'kwargs = {kwargs}')
+    for x in args:
+      print(f'arg={x}')
+    for k,v in kwargs.items():
+          print(f'key={k}, value={v}')
+  return inner
+
+@outline
+@list_items
+def display(msg):
+  print(msg)
+
+display('Hello World')
+
+@outline
+@list_items
+def birthday(name='', age=0):
+  print(f'Happy Birthday {name} you are {age} years old!')
+
+birthday(name='John', age=32)
